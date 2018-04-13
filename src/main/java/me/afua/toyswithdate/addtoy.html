@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+        <form action="/savetoy" th:object="${aToy}" method="post">
+            <!--Always include the ID field. Use hashes in production so it is not easy to guess this value-->
+            <input type="hidden" th:field="*{id}">
+
+            <input type="text" th:field="*{model}">
+            <input type="text" th:field="*{brand}">
+            <!--Allow the user to enter text, convert it to a boolean in the ccntroller (and later in the service) -->
+            <input type="text" name="yesno">
+
+            <!--Allow the user to enter text, convert it to a date int eh controller (and later in the service) -->
+            <input type="date" th:name="manufactured">
+        </form>
+</body>
+</html>

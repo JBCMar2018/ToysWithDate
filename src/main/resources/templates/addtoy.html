@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+        <form action="/savetoy" method="post" th:object="${aToy}">
+            <!--Always include the ID field. Use hashes in production so it is not easy to guess this value-->
+            <input type="hidden" th:field="*{id}">
+
+            <div>
+                <label for="model">Model: </label>
+                <input type="text" th:field="*{model}">
+            </div>
+            <div>
+                <label for="brand">Brand: </label>
+                <input type="text" th:field="*{brand}">
+                <!--Allow the user to enter text, convert it to a boolean in the ccntroller (and later in the service) -->
+            </div>
+            <label for="yesno">In Stock? </label>
+            <input type="text" name="yesno">
+
+            <!--Allow the user to enter text, convert it to a date int eh controller (and later in the service)
+                Default to current date, using the Thymeleaf Dates utility -->
+           <div>
+                <label for="manufactured">Date of Manufacture: </label>
+                <input type="date" th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" name="manufactured">
+           </div>
+            <button type="submit">Submit</button>
+        </form>
+</body>
+</html>
